@@ -1,0 +1,85 @@
+<!DOCTYP>
+<html>
+<head>
+    <title>Download Button</title>
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .countdown {
+            font-size: 48px;
+        }
+
+        .download-button {
+            display: none;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .success-text {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-container">
+        <div id="countdownContainer" class="countdown">5</div>
+        <button id="downloadButton" class="download-button">BAIXAR</button>
+        <p id="waitText">AGUARDE 5 SEGUNDOS</p>
+        <span id="successText" class="success-text"></span>
+    </div>
+
+    <script >
+        var countdownElement = document.getElementById('countdownContainer');
+        var countdown = 5;
+
+        function updateCountdown() {
+            countdownElement.innerText = countdown;
+            countdown--;
+
+            if (countdown === 1) {
+                var waitText = document.getElementById('waitText');
+                waitText.style.display = 'none';
+            }
+
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+
+                var downloadButton = document.getElementById('downloadButton');
+                downloadButton.style.display = 'block';
+
+                countdownElement.style.display = 'none';
+
+                var successText = document.getElementById('successText');
+                successText.innerText = '☝';
+            }
+        }
+
+        var countdownInterval = setInterval(updateCountdown, 1000);
+
+        var downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', function() {
+            downloadButton.classList.add('button-animation');
+
+            setTimeout(function() {
+                downloadButton.classList.remove('button-animation');
+                window.location.href = 'https://utorrentcursos.my.canva.site/';
+            }, 200);
+        });
+        
+    </script>
+<script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=733892&format=300x250&ga=g"></script>
+<noscript><a href="https://yllix.com/publishers/733892" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/300x250.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
+</body>
+</html>
