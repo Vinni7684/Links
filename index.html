@@ -1,8 +1,9 @@
-<!DOCTYP>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Download Button</title>
+    <title>Página com Botão e Menu</title>
     <style>
+        /* Estilos do botão */
         .center-container {
             display: flex;
             justify-content: center;
@@ -11,8 +12,50 @@
             height: 100vh;
         }
 
+        .countdown-container {
+            position: relative;
+        }
+
         .countdown {
             font-size: 48px;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .loader-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .download-button {
@@ -21,41 +64,152 @@
             color: white;
             border: none;
             border-radius: 30px;
-            padding: 10px 20px;
+            padding: 10px 70px; /* Ajuste o padding para aumentar o tamanho do botão */
             font-size: 16px;
             cursor: pointer;
-            margin-bottom: 10px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonFadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes buttonFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .success-text {
             font-size: 24px;
         }
+
+        .button-animation {
+            animation: buttonClickAnimation 0.2s linear;
+        }
+
+        @keyframes buttonClickAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Estilos do menu */
+        .menu-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+        }
+
+        .menu-icon {
+            font-family: 'Material Symbols Outline', sans-serif;
+            font-size: 30px;
+            color: #000;
+            cursor: pointer;
+            background-color: #000;
+            color: white;
+            border-radius: 10px;
+            width: 50px;
+            height: 30px;
+        }
+
+        .menu-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 200px;
+            background-color: #f2f2f2;
+            transform: translateX(-200px);
+            transition: transform 0.3s ease-out;
+            z-index: 999;
+        }
+
+        .menu-column.open {
+            transform: translateX(0);
+        }
+
+        .menu-link {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 50px;
+        }
+
+        .menu-link.black {
+            color: #000;
+        }
+
+        /* Estilos adicionais */
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        @media (max-width: 767px) {
+            .countdown {
+                font-size: 24px;
+            }
+
+            .download-button {
+                font-size: 14px;
+            }
+
+            .success-text {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="center-container">
-        <div id="countdownContainer" class="countdown">5</div>
+        <div class="countdown-container">
+            <div id="countdownContainer" class="countdown">10</div>
+            <div class="loader-container">
+                <div class="loader"></div>
+            </div>
+        </div>
         <button id="downloadButton" class="download-button">BAIXAR</button>
-        <p id="waitText">AGUARDE 5 SEGUNDOS</p>
         <span id="successText" class="success-text"></span>
     </div>
 
-    <script  async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7262447504373113"
+    <div class="menu-container">
+        <span class="menu-icon" onclick="toggleMenu()">+</span>
+    </div>
+
+    <div class="menu-column" id="menuColumn">
+        <a class="menu-link" href="https://t.me/nomademilionari1" target="_blank">Grupo Telegram</a>
+    </div>
+</body>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7262447504373113"
      crossorigin="anonymous">
+        // Botão de Download
         var countdownElement = document.getElementById('countdownContainer');
-        var countdown = 5;
+        var countdown = 10;
 
         function updateCountdown() {
             countdownElement.innerText = countdown;
             countdown--;
 
-            if (countdown === 1) {
-                var waitText = document.getElementById('waitText');
-                waitText.style.display = 'none';
-            }
-
-            if (countdown < 0) {
+            if (countdown <= 1) {
                 clearInterval(countdownInterval);
+
+                var loaderContainer = document.querySelector('.loader-container');
+                loaderContainer.style.display = 'none';
 
                 var downloadButton = document.getElementById('downloadButton');
                 downloadButton.style.display = 'block';
@@ -63,7 +217,7 @@
                 countdownElement.style.display = 'none';
 
                 var successText = document.getElementById('successText');
-                successText.innerText = '☝';
+                successText.innerText = ':)';
             }
         }
 
@@ -78,7 +232,31 @@
                 window.location.href = 'https://utorrentcursos.my.canva.site/';
             }, 200);
         });
-        
-   </script>
-</body>
+
+        // Menu Hambúrguer
+        function toggleMenu() {
+            var menuColumn = document.getElementById('menuColumn');
+            menuColumn.classList.toggle('open');
+        }
+
+        // Adaptar tamanho para dispositivos móveis
+        function adaptarTamanho() {
+            if (window.innerWidth <= 767) {
+                // Aumentar o tamanho da fonte em dispositivos móveis
+                document.body.style.fontSize = '40px';
+
+                // Aumentar o tamanho do botão em dispositivos móveis
+                document.querySelector('.download-button').style.padding = '20px 50px';
+            } else {
+                // Reverter para o tamanho original em dispositivos de largura maior que 767px
+                document.body.style.fontSize = '16px';
+                document.querySelector('.download-button').style.padding = '10px 70px'; /* Reverter o padding do
+            // botão para o valor original */
+            }
+        }
+
+        // Chamar a função no carregamento da página e redimensionamento
+        window.addEventListener('load', adaptarTamanho);
+        window.addEventListener('resize', adaptarTamanho);
+    </script>
 </html>
