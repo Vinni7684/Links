@@ -5,62 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Login</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(to bottom, #ff4b4b, #ff0000);
         }
         .login-container {
             background: #ffffff;
-            padding: 40px;
+            padding: 20px 20px 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 350px;
             width: 100%;
-            margin: auto;
+            margin: 20px auto;
         }
         .login-container img {
-            max-width: 100px; /* Tamanho máximo da imagem */
+            max-width: 80px;
             height: auto;
-            margin-bottom: 10px; /* Reduzido para diminuir o espaço */
+            margin-bottom: 10px;
             cursor: pointer;
         }
         .login-container h2 {
-            margin-top: 0; /* Remove margem superior */
+            margin-top: 0;
             margin-bottom: 20px;
             color: #333333;
+            font-size: 1.2em;
         }
         .login-container label {
             display: block;
             text-align: left;
             margin-bottom: 5px;
             color: #333333;
+            font-size: 0.9em;
+            font-weight: 600;
         }
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+        .login-container input[type="text"] {
+            width: 90%;
+            padding: 9px; /* Ajuste de padding */
+            margin-bottom: 15px;
             border: 1px solid #cccccc;
             border-radius: 5px;
+            font-size: 0.9em;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            transition: border 0.3s ease;
         }
-        .login-container input[type="text"]::placeholder,
-        .login-container input[type="password"]::placeholder {
+        .login-container input[type="text"]::placeholder {
             color: #999999;
+        }
+        .login-container input[type="text"]:focus {
+            border-color: #ff4b4b;
+            outline: none;
         }
         .login-container .remember-forgot {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             margin-bottom: 20px;
         }
         .login-container .remember-forgot label {
             display: flex;
             align-items: center;
+            font-size: 0.9em;
         }
         .login-container .remember-forgot input[type="checkbox"] {
             margin-right: 5px;
@@ -72,10 +84,15 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
+            width: 90%;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease-in-out;
         }
         .login-container .login-button:hover {
             background: linear-gradient(to right, #ffb300, #ffd700);
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
         }
         .footer {
             background-color: #000000;
@@ -99,6 +116,41 @@
             display: inline-block;
             margin: 10px 5px;
         }
+
+        /* Estilo responsivo para dispositivos móveis */
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 90%;
+                padding: 20px;
+            }
+            .login-container img {
+                max-width: 60px;
+            }
+            .login-container h2 {
+                font-size: 1em;
+            }
+            .login-container label, 
+            .login-container .remember-forgot label {
+                font-size: 0.8em;
+            }
+            .login-container input[type="text"] {
+                padding: 10px;
+                font-size: 0.8em;
+                width: 100%;
+            }
+            .login-container .login-button {
+                padding: 8px;
+                font-size: 0.9em;
+                width: 100%;
+            }
+            .footer .footer-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .footer .footer-section img {
+                margin: 5px auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -111,7 +163,7 @@
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="O mesmo que está no seu comprovante" required>
             <label for="instagram">Link do seu perfil:</label>
-            <input type="password" id="instagram" name="link do instagram" placeholder="lembre-se de estar público" required>
+            <input type="text" id="instagram" name="link do instagram" placeholder="lembre-se de estar público" required>
             <div class="remember-forgot">
                 <label>
                     <input type="checkbox" name="remember"> Concordo com os termos
