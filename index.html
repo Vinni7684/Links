@@ -1,114 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neumorphism Login Form</title>
+    <title>Formulário de Login</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
-
         body {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
             height: 100vh;
-            background-color: #e0e5ec;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ff4b4b, #ff0000);
         }
-
         .login-container {
-            background-color: #e0e5ec;
-            border-radius: 20px;
-            box-shadow: 5px 5px 15px #babecc, -5px -5px 15px #ffffff;
+            background: #ffffff;
             padding: 40px;
-            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
-        }
-
-        .logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            box-shadow: 5px 5px 15px #babecc, -5px -5px 15px #ffffff;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #777;
-            margin-bottom: 20px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
+            max-width: 400px;
             width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: inset 5px 5px 15px #babecc, inset -5px -5px 15px #ffffff;
-            background-color: #e0e5ec;
-            font-size: 16px;
-            color: #333;
+            margin: auto;
         }
-
-        .login-button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            background-color: #3c8dbc;
-            color: white;
-            font-size: 16px;
-            box-shadow: 5px 5px 15px #babecc, -5px -5px 15px #ffffff;
+        .login-container img {
+            max-width: 100px; /* Tamanho máximo da imagem */
+            height: auto;
+            margin-bottom: 10px; /* Reduzido para diminuir o espaço */
             cursor: pointer;
         }
-
-        .login-button:hover {
-            background-color: #3586b0;
+        .login-container h2 {
+            margin-top: 0; /* Remove margem superior */
+            margin-bottom: 20px;
+            color: #333333;
         }
-
-        .forgot-password {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #777;
+        .login-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #333333;
         }
-
-        .forgot-password a {
-            color: #3c8dbc;
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        .login-container input[type="text"]::placeholder,
+        .login-container input[type="password"]::placeholder {
+            color: #999999;
+        }
+        .login-container .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .login-container .remember-forgot label {
+            display: flex;
+            align-items: center;
+        }
+        .login-container .remember-forgot input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .login-container .login-button {
+            background: linear-gradient(to right, #ffc107, #ffeb3b);
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-container .login-button:hover {
+            background: linear-gradient(to right, #ffb300, #ffd700);
+        }
+        .footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            margin-top: auto;
+        }
+        .footer .footer-section {
+            display: inline-block;
+            width: 32%;
+            vertical-align: top;
+            text-align: center;
+        }
+        .footer .footer-section a {
+            color: #ffffff;
             text-decoration: none;
+        }
+        .footer .footer-section img {
+            max-width: 60px;
+            height: auto;
+            display: inline-block;
+            margin: 10px 5px;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-form">
-            <div class="logo">
-                <img src="logo.png" alt="Web Dev Logo">
+        <a href="https://www.macacomaxx.shop/" target="_blank">
+            <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326794/9_20240101_201459_0008.png" alt="Logo">
+        </a>
+        <h2>Falta pouco para receber seus seguidores!</h2>
+        <form action="https://api.sheetmonkey.io/form/sB7Sp1Dasp9pJcSSqViSxf" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="O mesmo que está no seu comprovante" required>
+            <label for="instagram">Link do seu perfil:</label>
+            <input type="password" id="instagram" name="link do instagram" placeholder="lembre-se de estar público" required>
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox" name="remember"> Concordo com os termos
+                </label>
             </div>
-            <h2>Web Development</h2>
-            <p>Made easy!</p>
-            <form>
-                <div class="input-group">
-                    <input type="text" id="username" name="username" placeholder="username">
-                </div>
-                <div class="input-group">
-                    <input type="password" id="password" name="password" placeholder="password">
-                </div>
-                <button type="submit" class="login-button">Login</button>
-            </form>
-            <p class="forgot-password">Forgot password? <a href="#">or Sign Up</a></p>
+            <input type="submit" value="Comprar" class="login-button">
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="footer-section">
+            <p>Macaco maxx</p>
+            <p>Todos os direitos reservados</p>
+        </div>
+        <div class="footer-section">
+            <p>Institucional</p>
+            <p><a href="https://www.macacomaxx.shop/pagina/sobre-nos" target="_blank">Sobre nós.</a></p>
+        </div>
+        <div class="footer-section">
+            <p>Redes sociais</p>
+            <a href="https://www.instagram.com/macacomaxx/" target="_blank">
+                <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2306345/conversions/large.png" alt="Instagram">
+            </a>
+            <a href="https://www.macacomaxx.shop/" target="_blank">
+                <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326923/conversions/large.png" alt="Site Seguro">
+            </a>
         </div>
     </div>
 </body>
