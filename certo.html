@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Pagamento</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #ff4b4b, #ff0000);
+        }
+        .confirmation-container {
+            background: #ffffff;
+            padding: 20px 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+            margin: 20px auto;
+            opacity: 0; /* Inicialmente invisível */
+            transition: opacity 1s ease-in-out; /* Transição para aumentar a opacidade */
+        }
+        .confirmation-container.visible {
+            opacity: 1; /* Torna visível */
+        }
+        .confirmation-container img {
+            max-width: 300px; /* Edite aqui para ajustar o tamanho da imagem */
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .confirmation-container h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333333;
+            font-size: 1.2em;
+        }
+        .confirmation-container p {
+            color: #333333;
+            font-size: 0.9em;
+            margin: 0;
+            margin-top: 5px; /* Edite aqui para ajustar a posição do texto */
+        }
+        .footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            margin-top: auto;
+        }
+        .footer .footer-section {
+            display: inline-block;
+            width: 32%;
+            vertical-align: top;
+            text-align: center;
+        }
+        .footer .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .footer .footer-section img {
+            max-width: 60px;
+            height: auto;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        /* Estilo responsivo para dispositivos móveis */
+        @media (max-width: 480px) {
+            .confirmation-container {
+                max-width: 90%;
+                padding: 20px;
+            }
+            .confirmation-container img {
+                max-width: 150px; /* Edite aqui para ajustar o tamanho da imagem em dispositivos móveis */
+            }
+            .confirmation-container h2 {
+                font-size: 1em;
+            }
+            .confirmation-container p {
+                font-size: 0.8em;
+                margin-top: 5px; /* Edite aqui para ajustar a posição do texto em dispositivos móveis */
+            }
+            .footer .footer-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .footer .footer-section img {
+                margin: 5px auto;
+            }
+        }
+    </style>
+</head>
+<body onload="showContent()">
+    <div class="confirmation-container" id="confirmation">
+        <h2>Copie o código e faça seu pagamento</h2>
+        <img src="https://vinni7684.github.io/teste/Inserir%20um%20subt%C3%ADtulo.png" alt="Imagem de confirmação">
+        <p>Aguarde o seu pedido ser confirmado</p>
+        <p>Você é top!!</p>
+    </div>
+    <div class="footer">
+        <div class="footer-section">
+            <p>Macaco maxx</p>
+            <p>Todos os direitos reservados</p>
+        </div>
+        <div class="footer-section">
+            <p>Institucional</p>
+            <p><a href="https://www.macacomaxx.shop/pagina/sobre-nos" target="_blank">Sobre nós.</a></p>
+        </div>
+        <div class="footer-section">
+            <p>Redes sociais</p>
+            <a href="https://www.instagram.com/macacomaxx/" target="_blank">
+                <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2306345/conversions/large.png" alt="Instagram">
+            </a>
+            <a href="https://www.macacomaxx.shop/" target="_blank">
+                <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326923/conversions/large.png" alt="Site Seguro">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showContent() {
+            document.getElementById('confirmation').classList.add('visible');
+        }
+    </script>
+</body>
+</html>
