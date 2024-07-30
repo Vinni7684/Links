@@ -90,7 +90,6 @@
         }
         .login-container .remember-forgot input[type="checkbox"], .payment-container .remember-forgot input[type="checkbox"] {
             margin-right: 5px;
-          
         }
         .login-container .login-button, .payment-container .login-button {
             background: linear-gradient(to right, #ffc107, #ffeb3b);
@@ -197,6 +196,10 @@
                 font-size: 0.9em;
                 width: 80%; /* Garantir que o botão ocupe toda a largura disponível */
             }
+            .qr-code-container img {
+                max-width: 70%; /* Certifica-se de que o QR code ocupe a largura disponível */
+                height: auto; /* Mantém a proporção da imagem */
+            }
             .footer {
                 display: none; /* Oculta o rodapé em dispositivos móveis */
             }
@@ -242,7 +245,11 @@
         </div>
 
         <div class="payment-container hidden" style="display:none;">
-            <h2>Copie o código e faça seu pagamento</h2>
+            <h2>Escaneie o QR Code com seu app de pagamentos para pagar via Pix.</h2>
+            <div class="qr-code-container">
+                <img src="https://vinni7684.github.io/teste/qr-code-plus.jpg" alt="QR Code">
+            </div>
+            <p style="font-size: 0.8em; color: #333;">Não consegue ler o código com a câmera? Copie o código para efetuar o pagamento.</p>
             <div class="copy-code-container">
                 <input type="text" id="pix-code" value="00020101021126520014br.gov.bcb.pix0114+55649928756640212Macaco Maxx 5204000053039865802BR5915Vinnicius Lopes6009SAO PAULO622905257403b75315cd435980346b1ec63046574" readonly>
                 <button onclick="copyToClipboard()">
@@ -253,7 +260,7 @@
             <form action="https://api.sheetmonkey.io/form/sB7Sp1Dasp9pJcSSqViSxf" method="post">
                 <input type="hidden" id="hidden-name" name="Nome">
                 <input type="hidden" id="hidden-instagram" name="Link do instagram">
-                <input type="submit" value="Pago" class="login-button">
+                <input type="submit" value="PAGO" class="login-button">
             </form>
         </div>
     </div>
