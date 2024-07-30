@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Login</title>
+    <title>Formulário de Pagamento</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -16,7 +16,7 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to bottom, #ff4b4b, #ff0000);
         }
-        .login-container {
+        .login-container, .payment-container {
             background: #ffffff;
             padding: 20px 20px 40px;
             border-radius: 10px;
@@ -25,20 +25,25 @@
             max-width: 350px;
             width: 100%;
             margin: 20px auto;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
-        .login-container img {
+        .login-container.hidden, .payment-container.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .login-container img, .payment-container img {
             max-width: 80px;
             height: auto;
             margin-bottom: 10px;
             cursor: pointer;
         }
-        .login-container h2 {
+        .login-container h2, .payment-container h2 {
             margin-top: 0;
             margin-bottom: 20px;
             color: #333333;
             font-size: 1.2em;
         }
-        .login-container label {
+        .login-container label, .payment-container label {
             display: block;
             text-align: left;
             margin-bottom: 5px;
@@ -46,9 +51,9 @@
             font-size: 0.9em;
             font-weight: 600;
         }
-        .login-container input[type="text"] {
+        .login-container input[type="text"], .payment-container input[type="text"] {
             width: 90%;
-            padding: 9px; /* Ajuste de padding */
+            padding: 9px;
             margin-bottom: 15px;
             border: 1px solid #cccccc;
             border-radius: 5px;
@@ -57,27 +62,27 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             transition: border 0.3s ease;
         }
-        .login-container input[type="text"]::placeholder {
+        .login-container input[type="text"]::placeholder, .payment-container input[type="text"]::placeholder {
             color: #999999;
         }
-        .login-container input[type="text"]:focus {
+        .login-container input[type="text"]:focus, .payment-container input[type="text"]:focus {
             border-color: #ff4b4b;
             outline: none;
         }
-        .login-container .remember-forgot {
+        .login-container .remember-forgot, .payment-container .remember-forgot {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 20px;
         }
-        .login-container .remember-forgot label {
+        .login-container .remember-forgot label, .payment-container .remember-forgot label {
             display: flex;
             align-items: center;
             font-size: 0.9em;
         }
-        .login-container .remember-forgot input[type="checkbox"] {
+        .login-container .remember-forgot input[type="checkbox"], .payment-container .remember-forgot input[type="checkbox"] {
             margin-right: 5px;
         }
-        .login-container .login-button {
+        .login-container .login-button, .payment-container .login-button {
             background: linear-gradient(to right, #ffc107, #ffeb3b);
             color: #ffffff;
             padding: 10px;
@@ -90,9 +95,41 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             transition: box-shadow 0.3s ease-in-out;
         }
-        .login-container .login-button:hover {
+        .login-container .login-button:hover, .payment-container .login-button:hover {
             background: linear-gradient(to right, #ffb300, #ffd700);
             box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
+        }
+        .copy-code-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .copy-code-container input {
+            width: calc(100% - 40px);
+            border: none;
+            background: none;
+            font-size: 0.9em;
+            outline: none;
+        }
+        .copy-code-container button {
+            background: none;
+            border: none;
+            color: #333333;
+            cursor: pointer;
+            font-size: 1em;
+            position: absolute;
+            right: 20px;
+            top: 50px; /* Edite aqui a altura da imagem */
+        }
+        .copy-code-container button img {
+            width: 24px;
+            height: 24px;
         }
         .footer {
             background-color: #000000;
@@ -119,26 +156,25 @@
 
         /* Estilo responsivo para dispositivos móveis */
         @media (max-width: 480px) {
-            .login-container {
+            .login-container, .payment-container {
                 max-width: 90%;
                 padding: 20px;
             }
-            .login-container img {
+            .login-container img, .payment-container img {
                 max-width: 60px;
             }
-            .login-container h2 {
+            .login-container h2, .payment-container h2 {
                 font-size: 1em;
             }
-            .login-container label, 
-            .login-container .remember-forgot label {
+            .login-container label, .payment-container label {
                 font-size: 0.8em;
             }
-            .login-container input[type="text"] {
+            .login-container input[type="text"], .payment-container input[type="text"] {
                 padding: 10px;
                 font-size: 0.8em;
                 width: 100%;
             }
-            .login-container .login-button {
+            .login-container .login-button, .payment-container .login-button {
                 padding: 8px;
                 font-size: 0.9em;
                 width: 100%;
@@ -152,27 +188,58 @@
             }
         }
     </style>
+    <script>
+        function showPaymentContainer() {
+            var name = document.getElementById("nome").value;
+            var instagram = document.getElementById("instagram").value;
+            document.getElementById("hidden-name").value = name;
+            document.getElementById("hidden-instagram").value = instagram;
+            document.querySelector('.login-container').classList.add('hidden');
+            setTimeout(() => {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.payment-container').style.display = 'block';
+                setTimeout(() => {
+                    document.querySelector('.payment-container').classList.remove('hidden');
+                }, 50);
+            }, 500);
+        }
+
+        function copyToClipboard() {
+            const copyText = document.getElementById("pix-code");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Código PIX copiado: " + copyText.value);
+        }
+    </script>
 </head>
 <body>
     <div class="login-container">
-        <a href="https://www.macacomaxx.shop/" target="_blank">
-            <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326794/9_20240101_201459_0008.png" alt="Logo">
-        </a>
+        <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326794/9_20240101_201459_0008.png" alt="Logo">
         <h2>Falta pouco para receber seus seguidores!</h2>
-        <form action="https://api.sheetmonkey.io/form/sB7Sp1Dasp9pJcSSqViSxf" method="post">
+        
+        <form onsubmit="showPaymentContainer(); return false;">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="O mesmo que está no seu comprovante" required>
             <label for="instagram">Link do seu perfil:</label>
-            <input type="text" id="instagram" name="link do instagram" placeholder="lembre-se de estar público" required>
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox" name="remember"> Concordo com os termos
-                </label>
-            </div>
-            <input type="submit" value="Comprar" class="login-button">
+            <input type="text" id="instagram" name="instagram" placeholder="Lembre-se de estar público" required>
+            <input type="submit" value="COMPRAR" class="login-button">
         </form>
     </div>
 
+    <div class="payment-container hidden" style="display:none;">
+        <h2>Copie o código e faça seu pagamento</h2>
+        <div class="copy-code-container">
+            <input type="text" id="pix-code" value="00020101021126520014br.gov.bcb.pix0114+55649928756640212Macaco Maxx 5204000053039865802BR5915Vinnicius Lopes6009SAO PAULO622905257403b75315cd435980346b1ec63046574" readonly>
+            <button onclick="copyToClipboard()">
+                <img src="https://img.icons8.com/material-rounded/24/copy.png" alt="Copy" width="24" height="24">
+            </button>
+        </div>
+        <form action="https://api.sheetmonkey.io/form/sB7Sp1Dasp9pJcSSqViSxf" method="post">
+            <input type="hidden" id="hidden-name" name="Nome">
+            <input type="hidden" id="hidden-instagram" name="Link do instagram">
+            <input type="submit" value="Pago" class="login-button">
+        </form>
+    </div>
     <div class="footer">
         <div class="footer-section">
             <p>Macaco maxx</p>
