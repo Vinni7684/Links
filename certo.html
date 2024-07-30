@@ -10,7 +10,8 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center; /* Centraliza horizontalmente */
             min-height: 100vh;
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -53,6 +54,8 @@
             color: #ffffff;
             padding: 20px;
             margin-top: auto;
+            text-align: center;
+            width: 100%; /* Garante que o rodapé ocupe toda a largura */
         }
         .footer .footer-section {
             display: inline-block;
@@ -74,32 +77,28 @@
         /* Estilo responsivo para dispositivos móveis */
         @media (max-width: 480px) {
             .confirmation-container {
-                max-width: 90%;
+                max-width: 80%;
                 padding: 20px;
             }
             .confirmation-container img {
-                max-width: 150px; /* Edite aqui para ajustar o tamanho da imagem em dispositivos móveis */
+                max-width: 300px; /* Edite aqui para ajustar o tamanho da imagem em dispositivos móveis */
             }
             .confirmation-container h2 {
-                font-size: 1em;
+                font-size: 1,50em;
             }
             .confirmation-container p {
-                font-size: 0.8em;
-                margin-top: 5px; /* Edite aqui para ajustar a posição do texto em dispositivos móveis */
+                font-size: 0.9em;
+                margin-top: 1px; /* Edite aqui para ajustar a posição do texto em dispositivos móveis */
             }
-            .footer .footer-section {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            .footer .footer-section img {
-                margin: 5px auto;
+            .footer {
+                display: none; /* Esconder a parte preta (rodapé) no celular */
             }
         }
     </style>
 </head>
 <body onload="showContent()">
     <div class="confirmation-container" id="confirmation">
-        <h2>Enviado com sucesso!</h2>
+        <h2>Copie o código e faça seu pagamento</h2>
         <img src="https://vinni7684.github.io/teste/Inserir%20um%20subt%C3%ADtulo.png" alt="Imagem de confirmação">
         <p>Aguarde o seu pedido ser confirmado</p>
         <p>Você é top!!</p>
