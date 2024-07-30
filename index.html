@@ -11,6 +11,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: center; /* Centraliza horizontalmente */
             min-height: 100vh;
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -136,6 +137,8 @@
             color: #ffffff;
             padding: 20px;
             margin-top: auto;
+            text-align: center;
+            width: 100%; /* Garante que o rodapé ocupe toda a largura */
         }
         .footer .footer-section {
             display: inline-block;
@@ -156,36 +159,44 @@
 
         /* Estilo responsivo para dispositivos móveis */
         @media (max-width: 480px) {
+            body {
+                justify-content: center; /* Centraliza verticalmente */
+                align-items: center; /* Centraliza horizontalmente */
+            }
             .login-container, .payment-container {
                 max-width: 90%;
-                padding: 20px;
+                padding: 10px;
+                margin-top: 100px; /* Reduzir o espaçamento superior */
             }
             .login-container img, .payment-container img {
-                max-width: 60px;
+                max-width: 90px;
             }
             .login-container h2, .payment-container h2 {
-                font-size: 1em;
+                font-size: 1.2em;
             }
             .login-container label, .payment-container label {
                 font-size: 0.8em;
             }
             .login-container input[type="text"], .payment-container input[type="text"] {
-                padding: 10px;
+                padding: 14px;
                 font-size: 0.8em;
-                width: 100%;
+                width: 90%; /* Garantir que os campos ocupem toda a largura disponível */
             }
             .login-container .login-button, .payment-container .login-button {
-                padding: 8px;
+                padding: 10px;
                 font-size: 0.9em;
+                width: 75%; /* Garantir que o botão ocupe toda a largura disponível */
+                margin-top: 9px;
+            }
+            .footer {
                 width: 100%;
+
+                
             }
-            .footer .footer-section {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            .footer .footer-section img {
-                margin: 5px auto;
-            }
+
+        
+
+        
         }
     </style>
     <script>
@@ -252,10 +263,12 @@
         <div class="footer-section">
             <p>Redes sociais</p>
             <a href="https://www.instagram.com/macacomaxx/" target="_blank">
+                <div class="imagens">
                 <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2306345/conversions/large.png" alt="Instagram">
             </a>
             <a href="https://www.macacomaxx.shop/" target="_blank">
                 <img src="https://cdn-meloja.nyc3.cdn.digitaloceanspaces.com/stores/uploads/2326923/conversions/large.png" alt="Site Seguro">
+            </div>
             </a>
         </div>
     </div>
