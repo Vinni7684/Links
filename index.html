@@ -69,6 +69,7 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             transition: border 0.3s ease;
             width: 94%;
+            position: relative; /* Necessário para posicionar o texto de ajuda */
         }
         .login-container input[type="text"]::placeholder, .payment-container input[type="text"]::placeholder {
             color: #999999;
@@ -86,7 +87,8 @@
         .login-container .remember-forgot label, .payment-container .remember-forgot label {
             display: flex;
             align-items: center;
-            font-size: 0.9em;
+            font-size: 0.8em; /* Tamanho do texto menor */
+            margin-left: 5px; /* Espaço menor entre o checkbox e o texto */
         }
         .login-container .remember-forgot input[type="checkbox"], .payment-container .remember-forgot input[type="checkbox"] {
             margin-right: 5px;
@@ -164,6 +166,10 @@
             display: inline-block;
             margin: 10px 5px;
         }
+        .qr-code-container img {
+                max-width: 80%; /* Certifica-se de que o QR code ocupe a largura disponível */
+                height: auto; /* Mantém a proporção da imagem */
+        }
 
         /* Estilo responsivo para dispositivos móveis */
         @media (max-width: 480px) {
@@ -204,11 +210,43 @@
                 display: none; /* Oculta o rodapé em dispositivos móveis */
             }
         }
+
+        /* ---- INÍCIO: Customizações para checkbox e link ---- */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 5px;
+            accent-color: red; /* Cor vermelha quando o checkbox está ativo */
+        }
+        .checkbox-container label {
+            color: #333333;
+            font-size: 0.8em; /* Tamanho do texto menor */
+            margin-left: 1px; /* Espaço menor entre o checkbox e o texto */
+            margin-top: 5px;
+        }
+        .link {
+            color: #ff4b4b; /* Cor vermelha */
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.7em;
+            position: absolute;
+            right: 128px; /* Posiciona o texto no final do input */
+            top: 305px; /* Ajuste conforme necessário para alinhar ao centro verticalmente */
+        }
+        /* ---- FIM: Customizações para checkbox e link ---- */
     </style>
     <script>
         function showPaymentContainer() {
             var name = document.getElementById("nome").value;
             var instagram = document.getElementById("instagram").value;
+            var checkbox = document.getElementById("perfil-publico");
+            if (!checkbox.checked) {
+                alert("Você precisa confirmar que seu perfil está público.");
+                return;
+            }
             document.getElementById("hidden-name").value = name;
             document.getElementById("hidden-instagram").value = instagram;
             document.querySelector('.login-container').classList.add('hidden');
@@ -240,6 +278,13 @@
                 <input type="text" id="nome" name="nome" placeholder="O mesmo que está no seu comprovante" required>
                 <label for="instagram">Link do seu perfil:</label>
                 <input type="text" id="instagram" name="instagram" placeholder="Lembre-se de estar público" required>
+                <span class="link" onclick="alert('Informe o link do seu perfil do Instagram. Certifique-se de que está no formato correto, incluindo http:// ou https://. Exemplo: https://www.instagram.com/seuperfil')"></span>
+                <!-- ---- INÍCIO: Checkbox para perfil público ---- -->
+                <div class="checkbox-container">
+                    <input type="checkbox" id="perfil-publico" required>
+                    <label for="perfil-publico">Meu perfil está público</label>
+                </div>
+                <!-- ---- FIM: Checkbox para perfil público ---- -->
                 <input type="submit" value="COMPRAR" class="login-button">
             </form>
         </div>
@@ -256,14 +301,14 @@
                     <img src="https://img.icons8.com/material-rounded/24/copy.png" alt="Copy" width="24" height="24">
                 </button>
             </div>
-            <p style="font-size: 0.8em; color: #333;">Assim que fizer o PIX, clique aqui:</p> <!-- Texto adicionado -->
+            <p style="font-size: 0.8em; color: #333;">Assim que fizer o PIX, clique aqui:</p>
             <form action="https://api.sheetmonkey.io/form/sB7Sp1Dasp9pJcSSqViSxf" method="post">
                 <input type="hidden" id="hidden-name" name="Nome">
                 <input type="hidden" id="hidden-instagram" name="Link do instagram">
                 <input type="submit" value="PAGO" class="login-button">
             </form>
         </div>
-    </div>
+    </div>              
     <div class="footer">
         <div class="footer-section">
             <p>Macaco maxx</p>
